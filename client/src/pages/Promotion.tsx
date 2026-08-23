@@ -16,12 +16,6 @@ const HERO_POSTERS: { src: string; alt: string; detailSrc?: string; detailAlt?: 
     detailAlt: "新會員消費滿額贈完整活動明細",
   },
   {
-    src: "/promo-banner-summer.jpg",
-    alt: "盛夏不鬧肌 夏季活動限定贈品：無痕塑形筋膜儀，2026/7/21～8/20 指定門檻滿額贈送",
-    detailSrc: "/promo-detail-summer.png",
-    detailAlt: "盛夏不鬧肌活動完整贈品門檻明細表",
-  },
-  {
     src: "/promo-banner-pvexchange.jpg",
     alt: "點點成金，PV換好禮：年度集點活動",
     detailSrc: "/promo-detail-pvexchange.png",
@@ -37,7 +31,7 @@ const GALLERY_IMAGES: string[] = [
   "/promo-gift-6.jpg",
 ];
 
-// 安瓶保養組 4 款總覽 — 不論目前生效中的是哪個活動（新客滿額贈／夏季限定／集點贈…），
+// 安瓶保養組 4 款總覽 — 不論目前生效中的是哪個活動（新客滿額贈／集點贈…），
 // 贈品都是這 4 款安瓶保養組其中之一，所以獨立做一組「款式總覽」相簿，
 // 講解任何一個活動時都可以直接點開給客人看，不受活動檔期切換影響。
 // 之後把照片放進 client/public/，檔名對應下面即可（可依實際照片再調整檔名）。
