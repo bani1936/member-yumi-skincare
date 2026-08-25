@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build site
-        run: VITE_BASE=/Yumi-Beauty-Assistant/ pnpm build
+        run: VITE_BASE=/ pnpm build
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v4
       - name: Upload Pages artifact
