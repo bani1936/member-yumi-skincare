@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Yumí 米米美學｜高端皮膚管理</title>
+    <!-- Open Graph / 社群分享連結預覽 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Yumí 米米美學｜高端皮膚管理" />
+    <meta property="og:title" content="Yumí 米米美學｜高端皮膚管理" />
+    <meta property="og:description" content="產品導覽與會員服務中心｜全系列產品介紹、首購／團購金額試算、會員位階與升級禮遇" />
+    <meta property="og:image" content="https://member.yumi-skincare.com/collagen-story-hero.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://member.yumi-skincare.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Yumí 米米美學｜高端皮膚管理" />
+    <meta name="twitter:description" content="產品導覽與會員服務中心｜全系列產品介紹、首購／團購金額試算、會員位階與升級禮遇" />
+    <meta name="twitter:image" content="https://member.yumi-skincare.com/collagen-story-hero.jpg" />
+    <!-- Favicon and Apple Touch Icon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=3" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon-152x152.png?v=3" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon-144x144.png?v=3" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png?v=3" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- THIS IS THE START OF A COMMENT BLOCK, BLOCK TO BE DELETED: Google Fonts here, example:
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    THIS IS THE END OF A COMMENT BLOCK, BLOCK TO BE DELETED -->
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const redirectPath = params.get('p');
+        if (!redirectPath) return;
+
+        const decodedPath = decodeURIComponent(redirectPath);
+        const normalizedPath = decodedPath.startsWith('/') ? decodedPath : `/${decodedPath}`;
+        const targetPath = `/#${normalizedPath}`;
+        window.history.replaceState({}, '', targetPath);
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+    <script
+      defer
+      src="%VITE_ANALYTICS_ENDPOINT%/umami"
+      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+  </body>
+
+</html>
