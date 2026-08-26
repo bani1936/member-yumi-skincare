@@ -43,7 +43,7 @@ function GlobalNav() {
             className="w-10 h-10 rounded-full object-cover"
           />
           <span className="flex flex-col items-start leading-tight">
-            <span style={{ fontFamily: "'Playfair Display', 'Noto Serif TC', serif", fontSize: '19px', fontWeight: 700, color: '#F5F1ED' }}>
+            <span style={{ fontFamily: "'Playfair Display', 'Noto Serif TC', serif", fontSize: '19px', fontWeight: 900, color: '#F5F1ED' }}>
               Yumí 米米美學
             </span>
             <span style={{ fontSize: '10px', letterSpacing: '2px', color: '#D9C6A5', marginTop: '3px' }}>
