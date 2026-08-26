@@ -42,7 +42,14 @@ function GlobalNav() {
             alt="Yumí Logo"
             className="w-10 h-10 rounded-full object-cover"
           />
-          <span className="text-sm font-semibold" style={{fontSize: '16px', fontWeight: '400'}}>Yumí 米米美學｜高端皮膚管理</span>
+          <span className="flex flex-col items-start leading-tight">
+            <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '19px', fontWeight: 700, color: '#F5F1ED' }}>
+              Yumí 米米美學
+            </span>
+            <span style={{ fontSize: '10px', letterSpacing: '2px', color: '#D9C6A5', marginTop: '3px' }}>
+              會員中心
+            </span>
+          </span>
         </button>
         <div className="hidden md:flex items-center gap-6">
           <button onClick={() => handleNavigate('/promotion')} className="text-sm hover:text-[#d4a574] transition-colors">最新活動</button>
