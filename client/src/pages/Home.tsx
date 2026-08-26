@@ -50,7 +50,7 @@ export default function Home() {
     }
   ];
 
-  const HEADING_FONT = "'Songti TC', 'Noto Serif TC', 'PMingLiU', 'Playfair Display', serif";
+  const HEADING_FONT = "'Playfair Display', 'Noto Serif TC', serif";
 
   return (
     <div className="min-h-screen" style={{ background: '#FAFAF8' }}>
