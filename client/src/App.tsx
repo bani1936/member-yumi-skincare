@@ -30,7 +30,7 @@ function GlobalNav() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-gradient-to-r from-[#5a4a3a] to-[#6b5a4a] text-white border-b border-[#4a3a2a]">
+    <nav className="sticky top-0 z-50 text-white border-b border-[#4a3a2a]" style={{ background: '#5a4a3a' }}>
       <div className="container max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <button
           onClick={() => handleNavigate('/')}
