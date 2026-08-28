@@ -64,12 +64,12 @@ export default function Home() {
           PROFESSIONAL SKIN MANAGEMENT
         </div>
         <h1
-          className="text-2xl md:text-3xl font-bold mb-3"
-          style={{ color: '#5a4632', fontFamily: HEADING_FONT }}
+          className="text-2xl md:text-3xl font-medium mb-3"
+          style={{ color: '#5a4632', fontFamily: HEADING_FONT, fontWeight: 500 }}
         >
           Yumí 米米美學｜高端皮膚管理
         </h1>
-        <p className="text-sm md:text-base" style={{ color: '#8a8a8a' }}>
+        <p className="text-sm md:text-base" style={{ color: '#6B6B6B' }}>
           專屬您的產品導覽與會員服務中心
         </p>
       </section>
