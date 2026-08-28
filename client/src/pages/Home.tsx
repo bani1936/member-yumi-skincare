@@ -114,12 +114,12 @@ export default function Home() {
                         {tool.subtitle}
                       </div>
                       <h3
-                        className="text-xl md:text-2xl font-semibold mb-3"
-                        style={{ color: '#5a4632', fontFamily: HEADING_FONT }}
+                        className="text-xl md:text-2xl font-medium mb-3"
+                        style={{ color: '#5a4632', fontFamily: HEADING_FONT, fontWeight: 500 }}
                       >
                         {tool.title}
                       </h3>
-                      <p className="leading-relaxed text-sm md:text-base whitespace-pre-line" style={{ color: '#8a8a8a' }}>
+                      <p className="leading-relaxed text-sm md:text-base whitespace-pre-line" style={{ color: '#6B6B6B' }}>
                         {tool.description}
                       </p>
                     </div>
@@ -145,14 +145,14 @@ export default function Home() {
                   </div>
 
                   <h3
-                    className={`text-xl md:text-2xl font-semibold ${tool.description ? 'mb-3' : ''}`}
-                    style={{ color: '#5a4632', fontFamily: HEADING_FONT }}
+                    className={`text-xl md:text-2xl font-medium ${tool.description ? 'mb-3' : ''}`}
+                    style={{ color: '#5a4632', fontFamily: HEADING_FONT, fontWeight: 500 }}
                   >
                     {tool.title}
                   </h3>
 
                   {tool.description && (
-                    <p className="leading-relaxed text-sm md:text-base whitespace-pre-line" style={{ color: '#8a8a8a' }}>
+                    <p className="leading-relaxed text-sm md:text-base whitespace-pre-line" style={{ color: '#6B6B6B' }}>
                       {tool.description}
                     </p>
                   )}
