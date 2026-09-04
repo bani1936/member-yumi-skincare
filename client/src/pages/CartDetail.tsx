@@ -182,6 +182,11 @@ export default function CartDetail() {
     setIsLoading(false);
   }, []);
 
+  const [glEnrollment] = useState<boolean>(() => {
+    return localStorage.getItem('glEnrollment') === 'true';
+  });
+  const GL_ENROLLMENT_PRICE = 1000;
+
   // 每當購物車變化時，保存到 localStorage
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -211,11 +216,11 @@ export default function CartDetail() {
     return sum + (product?.price || 0) * item.quantity;
   }, 0);
 
-  // 會員價總金額和總 PV
+  // 會員價總金額和總 PV（含 GL 會員開通禮遇，不影響原價與PV）
   const subtotal = cart.reduce((sum, item) => {
     const product = getProductById(item.productId);
     return sum + (product?.memberPrice || product?.price || 0) * item.quantity;
-  }, 0);
+  }, 0) + (glEnrollment ? GL_ENROLLMENT_PRICE : 0);
 
   const totalPV = cart.reduce((sum, item) => {
     const product = getProductById(item.productId);
@@ -308,6 +313,8 @@ export default function CartDetail() {
       discount,
       finalPrice,
       totalPV,
+      glEnrollment,
+      glEnrollmentPrice: glEnrollment ? GL_ENROLLMENT_PRICE : 0,
       customer: { name: "", phone: "", address: "" },
       gifts,
     };
@@ -467,6 +474,13 @@ export default function CartDetail() {
               );
             })}
           </div>
+
+          {glEnrollment && (
+            <div className="flex justify-between items-center px-4 py-3 mb-8 rounded-lg" style={{ background: '#F9F6F1' }}>
+              <span className="text-sm font-semibold text-foreground">GL 會員開通禮遇</span>
+              <span className="text-sm font-semibold text-foreground">NT$ {GL_ENROLLMENT_PRICE.toLocaleString()}</span>
+            </div>
+          )}
 
           {/* 總結資訊 */}
           <div className="bg-secondary/10 rounded-lg p-6 space-y-3 mb-8">
