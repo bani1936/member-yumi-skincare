@@ -29,6 +29,14 @@ export default function ProductCalculator() {
     return [];
   });
   const [expandedSeries, setExpandedSeries] = useState<Set<string>>(new Set(['熨斗系列']));
+  const [glEnrollment, setGlEnrollment] = useState<boolean>(() => {
+    return localStorage.getItem('glEnrollment') === 'true';
+  });
+  const GL_ENROLLMENT_PRICE = 1000;
+
+  useEffect(() => {
+    localStorage.setItem('glEnrollment', String(glEnrollment));
+  }, [glEnrollment]);
 
   // 每當購物車變化時，保存到 localStorage
   useEffect(() => {
@@ -116,11 +124,11 @@ export default function ProductCalculator() {
     return sum + (product?.price || 0) * item.quantity;
   }, 0);
 
-  // 會員價總金額
+  // 會員價總金額（含 GL 會員開通禮遇，不影響原價）
   const subtotal = cart.reduce((sum, item) => {
     const product = getProductById(item.productId);
     return sum + (product?.memberPrice || product?.price || 0) * item.quantity;
-  }, 0);
+  }, 0) + (glEnrollment ? GL_ENROLLMENT_PRICE : 0);
 
   // 計算點數（根據每個產品的 PV 乘上數量）
   const points = cart.reduce((sum, item) => {
@@ -222,6 +230,27 @@ export default function ProductCalculator() {
                 清空購物車
               </button>
             )}
+          </div>
+
+          {/* GL 會員開通禮遇 */}
+          <div
+            className="mb-6 md:mb-8 rounded-xl p-4 border"
+            style={{ background: '#F9F6F1', borderColor: '#E8DCC8' }}
+          >
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={glEnrollment}
+                onChange={(e) => setGlEnrollment(e.target.checked)}
+                className="w-[18px] h-[18px] flex-shrink-0 accent-primary"
+              />
+              <span className="flex-1 text-sm font-semibold text-foreground">
+                GL 會員開通禮遇
+              </span>
+              <span className="text-base font-semibold text-foreground">
+                NT${GL_ENROLLMENT_PRICE.toLocaleString()}
+              </span>
+            </label>
           </div>
 
           {/* 系列分組 */}
