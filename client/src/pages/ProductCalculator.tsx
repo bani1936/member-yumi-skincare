@@ -436,7 +436,7 @@ export default function ProductCalculator() {
             {/* 原價 */}
             <div className="text-left">
               <p className="text-sm text-muted-foreground mb-1">原價</p>
-              <p className="text-sm" style={{ color: '#B0A797' }}>
+              <p className="text-sm" style={{ color: '#B0A797', fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>
                 NT$ {originalSubtotal.toLocaleString()}
               </p>
             </div>
@@ -444,7 +444,7 @@ export default function ProductCalculator() {
             {/* 會員價 */}
             <div className="text-left">
               <p className="text-sm text-muted-foreground mb-1">會員價</p>
-              <p className="text-sm font-semibold text-foreground">
+              <p className="text-sm font-semibold text-foreground" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>
                 NT$ {subtotal.toLocaleString()}
               </p>
             </div>
@@ -452,7 +452,7 @@ export default function ProductCalculator() {
             {/* 折扣資訊 */}
             <div className="text-left">
               <p className="text-sm text-muted-foreground mb-1">折扣金額(PV)</p>
-              <p className="text-lg font-semibold text-accent">
+              <p className="text-lg font-semibold text-accent" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>
                 -NT$ {discount.toLocaleString()}
               </p>
             </div>
@@ -460,7 +460,7 @@ export default function ProductCalculator() {
             {/* 加總金額 */}
             <div className="text-left">
               <p className="text-sm text-muted-foreground mb-1">加總金額</p>
-              <p className="text-2xl font-bold text-primary">
+              <p className="text-2xl font-bold text-primary" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>
                 NT$ {finalPrice.toLocaleString()}
               </p>
             </div>
@@ -496,7 +496,7 @@ export default function ProductCalculator() {
               </span>
             </div>
             <div className="flex justify-between items-center pt-2 border-t" style={{ borderColor: '#EEE9E3' }}>
-              <p className="text-lg font-bold text-primary">
+              <p className="text-lg font-bold text-primary" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>
                 會員價 NT$ {finalPrice.toLocaleString()}
               </p>
               {cart.length > 0 && (

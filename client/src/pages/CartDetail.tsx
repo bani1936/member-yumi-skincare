@@ -399,9 +399,9 @@ export default function CartDetail() {
                     </div>
                     <div className="col-span-3 text-right">
                       {hasDiscount && (
-                        <p className="text-xs text-muted-foreground line-through">NT$ {product.price.toLocaleString()}</p>
+                        <p className="text-xs text-muted-foreground line-through" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>NT$ {product.price.toLocaleString()}</p>
                       )}
-                      <p className="text-sm font-semibold">NT$ {unitPrice.toLocaleString()}</p>
+                      <p className="text-sm font-semibold" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>NT$ {unitPrice.toLocaleString()}</p>
                     </div>
                     <div className="col-span-2 flex items-center justify-end">
                       <div className="flex items-center gap-1 bg-background border border-border rounded-lg p-1">
@@ -422,9 +422,9 @@ export default function CartDetail() {
                     </div>
                     <div className="col-span-3 text-right">
                       {hasDiscount && (
-                        <p className="text-xs text-muted-foreground line-through">NT$ {itemOriginalSubtotal.toLocaleString()}</p>
+                        <p className="text-xs text-muted-foreground line-through" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>NT$ {itemOriginalSubtotal.toLocaleString()}</p>
                       )}
-                      <p className="text-sm font-semibold" style={{ color: '#8b6f47' }}>NT$ {itemSubtotal.toLocaleString()}</p>
+                      <p className="text-sm font-semibold" style={{ color: '#8b6f47', fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>NT$ {itemSubtotal.toLocaleString()}</p>
                     </div>
                   </div>
 
@@ -442,15 +442,15 @@ export default function CartDetail() {
                         <p className="font-medium text-foreground text-xs flex-1 truncate">{product.name}</p>
                         <div className="text-right whitespace-nowrap flex-shrink-0">
                           {hasDiscount && (
-                            <p className="text-[10px] text-muted-foreground line-through leading-tight">NT$ {itemOriginalSubtotal.toLocaleString()}</p>
+                            <p className="text-[10px] text-muted-foreground line-through leading-tight" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>NT$ {itemOriginalSubtotal.toLocaleString()}</p>
                           )}
-                          <p className="text-xs font-semibold" style={{ color: '#8b6f47' }}>NT$ {itemSubtotal.toLocaleString()}</p>
+                          <p className="text-xs font-semibold" style={{ color: '#8b6f47', fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>NT$ {itemSubtotal.toLocaleString()}</p>
                         </div>
                       </div>
                       <div className="flex justify-between items-center">
                         <div className="text-xs text-muted-foreground leading-snug">
                           <div>{product.volume}</div>
-                          <div>NT$ {unitPrice.toLocaleString()}</div>
+                          <div style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>NT$ {unitPrice.toLocaleString()}</div>
                         </div>
                         <div className="flex items-center gap-1 bg-background border border-border rounded-lg p-0.5">
                           <button
@@ -478,7 +478,7 @@ export default function CartDetail() {
           {glEnrollment && (
             <div className="flex justify-between items-center px-4 py-3 mb-8 rounded-lg" style={{ background: '#F9F6F1' }}>
               <span className="text-sm font-semibold text-foreground">GL 會員開通禮遇</span>
-              <span className="text-sm font-semibold text-foreground">NT$ {GL_ENROLLMENT_PRICE.toLocaleString()}</span>
+              <span className="text-sm font-semibold text-foreground" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>NT$ {GL_ENROLLMENT_PRICE.toLocaleString()}</span>
             </div>
           )}
 
@@ -486,19 +486,19 @@ export default function CartDetail() {
           <div className="bg-secondary/10 rounded-lg p-6 space-y-3 mb-8">
             <div className="flex justify-between items-center">
               <span className="text-muted-foreground">原價</span>
-              <span className="font-semibold text-muted-foreground">NT$ {originalSubtotal.toLocaleString()}</span>
+              <span className="font-semibold text-muted-foreground" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>NT$ {originalSubtotal.toLocaleString()}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-muted-foreground">會員價</span>
-              <span className="font-semibold">NT$ {subtotal.toLocaleString()}</span>
+              <span className="font-semibold" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>NT$ {subtotal.toLocaleString()}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-muted-foreground">折扣金額(PV)</span>
-              <span className="font-semibold text-accent">-NT$ {discount.toLocaleString()}</span>
+              <span className="font-semibold text-accent" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>-NT$ {discount.toLocaleString()}</span>
             </div>
             <div className="border-t border-border pt-3 flex justify-between items-center">
               <span className="font-semibold">總付款金額</span>
-              <span className="text-2xl font-bold text-primary">NT$ {finalPrice.toLocaleString()}</span>
+              <span className="text-2xl font-bold text-primary" style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}>NT$ {finalPrice.toLocaleString()}</span>
             </div>
             <div className="flex justify-between items-center pt-3 border-t border-border">
               <span className="text-muted-foreground">獲得 PV</span>
