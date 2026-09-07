@@ -367,6 +367,33 @@ export default function CartDetail() {
               <div className="col-span-3 text-right">小計</div>
             </div>
 
+            {/* GL 會員開通禮遇（固定顯示於第一列） */}
+            {glEnrollment && (
+              <div
+                className="px-4 md:px-6 py-4 border-b border-border"
+                style={{ background: '#FBF8F3' }}
+              >
+                <div className="hidden md:grid grid-cols-12 gap-4 items-center">
+                  <div className="col-span-4">
+                    <p className="font-medium text-foreground text-sm">GL 會員開通禮遇</p>
+                  </div>
+                  <div className="col-span-3 text-right">
+                    <p className="text-sm font-semibold">NT$ {GL_ENROLLMENT_PRICE.toLocaleString()}</p>
+                  </div>
+                  <div className="col-span-2 text-right">
+                    <span className="text-sm font-semibold">1</span>
+                  </div>
+                  <div className="col-span-3 text-right">
+                    <p className="text-sm font-semibold" style={{ color: '#8b6f47' }}>NT$ {GL_ENROLLMENT_PRICE.toLocaleString()}</p>
+                  </div>
+                </div>
+                <div className="md:hidden flex justify-between items-center">
+                  <p className="font-medium text-foreground text-xs">GL 會員開通禮遇</p>
+                  <p className="text-xs font-semibold" style={{ color: '#8b6f47' }}>NT$ {GL_ENROLLMENT_PRICE.toLocaleString()}</p>
+                </div>
+              </div>
+            )}
+
             {/* 購物車項目 */}
             {cart.map((item) => {
               const product = getProductById(item.productId);
@@ -474,13 +501,6 @@ export default function CartDetail() {
               );
             })}
           </div>
-
-          {glEnrollment && (
-            <div className="flex justify-between items-center px-4 py-3 mb-8 rounded-lg" style={{ background: '#F9F6F1' }}>
-              <span className="text-sm font-semibold text-foreground">GL 會員開通禮遇</span>
-              <span className="text-sm font-semibold text-foreground">NT$ {GL_ENROLLMENT_PRICE.toLocaleString()}</span>
-            </div>
-          )}
 
           {/* 總結資訊 */}
           <div className="bg-secondary/10 rounded-lg p-6 space-y-3 mb-8">

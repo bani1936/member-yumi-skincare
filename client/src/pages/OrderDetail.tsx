@@ -75,12 +75,13 @@ const PDF_FOOTER_HEIGHT = 44;
 // 結算金額（訂單總額）跟滿額贈禮，各自獨立判斷放不放得下，不再綁成同一塊：
 // 商品明細最後一頁如果還有空間，優先把「結算金額」接在下面；
 // 滿額贈禮再看結算金額後面還剩不剩空間，放得下就接續同一頁，放不下才另開一頁單獨放滿額贈禮。
-function buildPrintPages(items: CartItem[], giftsHeight = 0, hasGifts = false): PrintPage[] {
+function buildPrintPages(items: CartItem[], giftsHeight = 0, hasGifts = false, hasGlEnrollment = false): PrintPage[] {
   if (items.length === 0) {
     return [{ items: [], isFirstPage: true, showTotals: true, showGifts: hasGifts, showFooter: true }];
   }
 
-  const firstPageCapacity = PDF_CONTENT_HEIGHT - PDF_HEADER_HEIGHT - PDF_CUSTOMER_INFO_HEIGHT - PDF_TABLE_HEADER_HEIGHT;
+  const glRowReserve = hasGlEnrollment ? PDF_ROW_HEIGHT : 0;
+  const firstPageCapacity = PDF_CONTENT_HEIGHT - PDF_HEADER_HEIGHT - PDF_CUSTOMER_INFO_HEIGHT - PDF_TABLE_HEADER_HEIGHT - glRowReserve;
   const otherPageCapacity = PDF_CONTENT_HEIGHT - PDF_HEADER_HEIGHT - PDF_TABLE_HEADER_HEIGHT;
   const rowsFirstPage = Math.max(1, Math.floor(firstPageCapacity / PDF_ROW_HEIGHT));
   const rowsOtherPage = Math.max(1, Math.floor(otherPageCapacity / PDF_ROW_HEIGHT));
@@ -316,7 +317,7 @@ export default function OrderDetail() {
   const giftsPdfHeight = hasGifts
     ? gifts.reduce((sum, gift) => sum + 34 + gift.items.reduce((s, item) => s + 18 + item.qty * 16, 0), 0)
     : 0;
-  const printPages = buildPrintPages(order.items, giftsPdfHeight, hasGifts);
+  const printPages = buildPrintPages(order.items, giftsPdfHeight, hasGifts, order.glEnrollment);
 
   return (
     <div className="min-h-screen bg-background pb-32">
@@ -348,6 +349,33 @@ export default function OrderDetail() {
               <div className="col-span-2 text-right">數量</div>
               <div className="col-span-3 text-right">小計</div>
             </div>
+
+            {/* GL 會員開通禮遇（固定顯示於第一列） */}
+            {order.glEnrollment && (
+              <div
+                className="px-4 md:px-6 py-4 border-b border-border"
+                style={{ background: '#FBF8F3' }}
+              >
+                <div className="hidden md:grid grid-cols-12 gap-4 items-center">
+                  <div className="col-span-4">
+                    <p className="font-medium text-foreground text-sm">GL 會員開通禮遇</p>
+                  </div>
+                  <div className="col-span-3 text-right">
+                    <p className="text-sm font-semibold">NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</p>
+                  </div>
+                  <div className="col-span-2 text-right">
+                    <span className="text-sm font-semibold">1</span>
+                  </div>
+                  <div className="col-span-3 text-right">
+                    <p className="text-sm font-semibold" style={{ color: '#8b6f47' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</p>
+                  </div>
+                </div>
+                <div className="md:hidden flex justify-between items-center">
+                  <p className="font-medium text-foreground text-xs">GL 會員開通禮遇</p>
+                  <p className="text-xs font-semibold" style={{ color: '#8b6f47' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</p>
+                </div>
+              </div>
+            )}
 
             {/* 購物車項目 */}
             {order.items.map((item) => {
@@ -424,32 +452,6 @@ export default function OrderDetail() {
                 </div>
               );
             })}
-
-            {order.glEnrollment && (
-              <div
-                className="px-4 md:px-6 py-4 border-b border-border last:border-b-0"
-                style={{ background: '#FBF8F3' }}
-              >
-                <div className="hidden md:grid grid-cols-12 gap-4 items-center">
-                  <div className="col-span-4">
-                    <p className="font-medium text-foreground text-sm">GL 會員開通禮遇</p>
-                  </div>
-                  <div className="col-span-3 text-right">
-                    <p className="text-sm font-semibold">NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</p>
-                  </div>
-                  <div className="col-span-2 text-right">
-                    <span className="text-sm font-semibold">1</span>
-                  </div>
-                  <div className="col-span-3 text-right">
-                    <p className="text-sm font-semibold" style={{ color: '#8b6f47' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</p>
-                  </div>
-                </div>
-                <div className="md:hidden flex justify-between items-center">
-                  <p className="font-medium text-foreground text-xs">GL 會員開通禮遇</p>
-                  <p className="text-xs font-semibold" style={{ color: '#8b6f47' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</p>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* 總結資訊 */}
@@ -662,7 +664,7 @@ export default function OrderDetail() {
               </div>
             )}
 
-            {(page.items.length > 0 || (page.showTotals && order.glEnrollment)) && (
+            {(page.items.length > 0 || (page.isFirstPage && order.glEnrollment)) && (
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
                 <thead>
                   <tr style={{ borderBottom: '2px solid #5a4632' }}>
@@ -673,6 +675,22 @@ export default function OrderDetail() {
                   </tr>
                 </thead>
                 <tbody>
+                  {page.isFirstPage && order.glEnrollment && (
+                    <tr style={{ borderBottom: '1px solid #E8E4E0', background: '#FBF8F3' }}>
+                      <td style={{ padding: '16px 8px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', height: '56px', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>GL 會員開通禮遇</div>
+                      </td>
+                      <td style={{ textAlign: 'right', padding: '16px 8px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', height: '56px', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</div>
+                      </td>
+                      <td style={{ textAlign: 'center', padding: '16px 8px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '56px', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>1</div>
+                      </td>
+                      <td style={{ textAlign: 'right', padding: '16px 8px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', height: '56px', fontSize: '14px', fontWeight: 700, color: '#8b6f47' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</div>
+                      </td>
+                    </tr>
+                  )}
                   {page.items.map((item, index) => {
                     const product = getProductById(item.productId);
                     if (!product) return null;
@@ -705,16 +723,6 @@ export default function OrderDetail() {
                       </tr>
                     );
                   })}
-                  {page.showTotals && order.glEnrollment && (
-                    <tr style={{ borderBottom: 'none', background: '#FBF8F3' }}>
-                      <td style={{ padding: '16px 8px', verticalAlign: 'middle' }}>
-                        <div style={{ fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>GL 會員開通禮遇</div>
-                      </td>
-                      <td style={{ textAlign: 'right', padding: '16px 8px', verticalAlign: 'middle', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</td>
-                      <td style={{ textAlign: 'center', padding: '16px 8px', verticalAlign: 'middle', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>1</td>
-                      <td style={{ textAlign: 'right', padding: '16px 8px', verticalAlign: 'middle', fontSize: '14px', fontWeight: 700, color: '#8b6f47' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</td>
-                    </tr>
-                  )}
                 </tbody>
               </table>
             )}
