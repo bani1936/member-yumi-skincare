@@ -69,6 +69,7 @@ const PDF_HEADER_HEIGHT = 78;
 const PDF_CUSTOMER_INFO_HEIGHT = 140;
 const PDF_TABLE_HEADER_HEIGHT = 52;
 const PDF_ROW_HEIGHT = 96;
+const PDF_GL_ROW_HEIGHT = 45;
 const PDF_TOTALS_HEIGHT = 160;
 const PDF_FOOTER_HEIGHT = 44;
 
@@ -80,7 +81,7 @@ function buildPrintPages(items: CartItem[], giftsHeight = 0, hasGifts = false, h
     return [{ items: [], isFirstPage: true, showTotals: true, showGifts: hasGifts, showFooter: true }];
   }
 
-  const glRowReserve = hasGlEnrollment ? PDF_ROW_HEIGHT : 0;
+  const glRowReserve = hasGlEnrollment ? PDF_GL_ROW_HEIGHT : 0;
   const firstPageCapacity = PDF_CONTENT_HEIGHT - PDF_HEADER_HEIGHT - PDF_CUSTOMER_INFO_HEIGHT - PDF_TABLE_HEADER_HEIGHT - glRowReserve;
   const otherPageCapacity = PDF_CONTENT_HEIGHT - PDF_HEADER_HEIGHT - PDF_TABLE_HEADER_HEIGHT;
   const rowsFirstPage = Math.max(1, Math.floor(firstPageCapacity / PDF_ROW_HEIGHT));
@@ -677,17 +678,17 @@ export default function OrderDetail() {
                 <tbody>
                   {page.isFirstPage && order.glEnrollment && (
                     <tr style={{ borderBottom: '1px solid #E8E4E0', background: '#FBF8F3' }}>
-                      <td style={{ padding: '16px 8px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', height: '56px', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>GL 會員開通禮遇</div>
+                      <td style={{ padding: '12px 8px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', height: '20px', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>GL 會員開通禮遇</div>
                       </td>
-                      <td style={{ textAlign: 'right', padding: '16px 8px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', height: '56px', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</div>
+                      <td style={{ textAlign: 'right', padding: '12px 8px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', height: '20px', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</div>
                       </td>
-                      <td style={{ textAlign: 'center', padding: '16px 8px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '56px', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>1</div>
+                      <td style={{ textAlign: 'center', padding: '12px 8px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '20px', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>1</div>
                       </td>
-                      <td style={{ textAlign: 'right', padding: '16px 8px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', height: '56px', fontSize: '14px', fontWeight: 700, color: '#8b6f47' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</div>
+                      <td style={{ textAlign: 'right', padding: '12px 8px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', height: '20px', fontSize: '14px', fontWeight: 700, color: '#8b6f47' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</div>
                       </td>
                     </tr>
                   )}
