@@ -152,6 +152,8 @@ interface OrderData {
   discount: number;
   finalPrice: number;
   totalPV: number;
+  glEnrollment?: boolean;
+  glEnrollmentPrice?: number;
   customer: {
     name: string;
     phone: string;
@@ -422,6 +424,32 @@ export default function OrderDetail() {
                 </div>
               );
             })}
+
+            {order.glEnrollment && (
+              <div
+                className="px-4 md:px-6 py-4 border-b border-border last:border-b-0"
+                style={{ background: '#FBF8F3' }}
+              >
+                <div className="hidden md:grid grid-cols-12 gap-4 items-center">
+                  <div className="col-span-4">
+                    <p className="font-medium text-foreground text-sm">GL 會員開通禮遇</p>
+                  </div>
+                  <div className="col-span-3 text-right">
+                    <p className="text-sm font-semibold">NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</p>
+                  </div>
+                  <div className="col-span-2 text-right">
+                    <span className="text-sm font-semibold">1</span>
+                  </div>
+                  <div className="col-span-3 text-right">
+                    <p className="text-sm font-semibold" style={{ color: '#8b6f47' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</p>
+                  </div>
+                </div>
+                <div className="md:hidden flex justify-between items-center">
+                  <p className="font-medium text-foreground text-xs">GL 會員開通禮遇</p>
+                  <p className="text-xs font-semibold" style={{ color: '#8b6f47' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</p>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* 總結資訊 */}
@@ -634,7 +662,7 @@ export default function OrderDetail() {
               </div>
             )}
 
-            {page.items.length > 0 && (
+            {(page.items.length > 0 || (page.showTotals && order.glEnrollment)) && (
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
                 <thead>
                   <tr style={{ borderBottom: '2px solid #5a4632' }}>
@@ -677,6 +705,16 @@ export default function OrderDetail() {
                       </tr>
                     );
                   })}
+                  {page.showTotals && order.glEnrollment && (
+                    <tr style={{ borderBottom: 'none', background: '#FBF8F3' }}>
+                      <td style={{ padding: '16px 8px', verticalAlign: 'middle' }}>
+                        <div style={{ fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>GL 會員開通禮遇</div>
+                      </td>
+                      <td style={{ textAlign: 'right', padding: '16px 8px', verticalAlign: 'middle', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</td>
+                      <td style={{ textAlign: 'center', padding: '16px 8px', verticalAlign: 'middle', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>1</td>
+                      <td style={{ textAlign: 'right', padding: '16px 8px', verticalAlign: 'middle', fontSize: '14px', fontWeight: 700, color: '#8b6f47' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             )}
