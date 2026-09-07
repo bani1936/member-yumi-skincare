@@ -678,16 +678,16 @@ export default function OrderDetail() {
                 <tbody>
                   {page.isFirstPage && order.glEnrollment && (
                     <tr style={{ borderBottom: '1px solid #E8E4E0', background: '#FBF8F3' }}>
-                      <td style={{ padding: '12px 8px' }}>
+                      <td style={{ padding: '8px 8px 16px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', height: '20px', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>GL 會員開通禮遇</div>
                       </td>
-                      <td style={{ textAlign: 'right', padding: '12px 8px' }}>
+                      <td style={{ textAlign: 'right', padding: '8px 8px 16px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', height: '20px', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</div>
                       </td>
-                      <td style={{ textAlign: 'center', padding: '12px 8px' }}>
+                      <td style={{ textAlign: 'center', padding: '8px 8px 16px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '20px', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>1</div>
                       </td>
-                      <td style={{ textAlign: 'right', padding: '12px 8px' }}>
+                      <td style={{ textAlign: 'right', padding: '8px 8px 16px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', height: '20px', fontSize: '14px', fontWeight: 700, color: '#8b6f47' }}>NT$ {(order.glEnrollmentPrice || 1000).toLocaleString()}</div>
                       </td>
                     </tr>
@@ -700,7 +700,7 @@ export default function OrderDetail() {
                     const isLast = index === page.items.length - 1;
                     return (
                       <tr key={item.productId} style={{ borderBottom: isLast ? 'none' : '1px solid #E8E4E0' }}>
-                        <td style={{ padding: '16px 8px', verticalAlign: 'middle' }}>
+                        <td style={{ padding: '10px 8px 22px', verticalAlign: 'middle' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                             {product.image ? (
                               <img
@@ -718,9 +718,9 @@ export default function OrderDetail() {
                             </div>
                           </div>
                         </td>
-                        <td style={{ textAlign: 'right', padding: '16px 8px', verticalAlign: 'middle', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>NT$ {unitPrice.toLocaleString()}</td>
-                        <td style={{ textAlign: 'center', padding: '16px 8px', verticalAlign: 'middle', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>{item.quantity}</td>
-                        <td style={{ textAlign: 'right', padding: '16px 8px', verticalAlign: 'middle', fontSize: '14px', fontWeight: 700, color: '#8b6f47' }}>NT$ {itemSubtotal.toLocaleString()}</td>
+                        <td style={{ textAlign: 'right', padding: '10px 8px 22px', verticalAlign: 'middle', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>NT$ {unitPrice.toLocaleString()}</td>
+                        <td style={{ textAlign: 'center', padding: '10px 8px 22px', verticalAlign: 'middle', fontSize: '14px', fontWeight: 600, color: '#3a2f24' }}>{item.quantity}</td>
+                        <td style={{ textAlign: 'right', padding: '10px 8px 22px', verticalAlign: 'middle', fontSize: '14px', fontWeight: 700, color: '#8b6f47' }}>NT$ {itemSubtotal.toLocaleString()}</td>
                       </tr>
                     );
                   })}
