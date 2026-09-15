@@ -270,7 +270,6 @@ export default function ProductDetail() {
                   <div className="text-xs text-muted-foreground mb-1">原價</div>
                   <div
                     className="text-xl font-bold text-muted-foreground"
-                    style={{ fontFamily: "'Spectral', 'Noto Serif TC', serif" }}
                   >
                     ${product.price}
                   </div>
@@ -279,7 +278,7 @@ export default function ProductDetail() {
                   <div className="text-xs text-muted-foreground mb-1">會員價</div>
                   <div
                     className="text-2xl font-bold"
-                    style={{ color: '#8b6f47', fontFamily: "'Spectral', 'Noto Serif TC', serif" }}
+                    style={{ color: '#8b6f47' }}
                   >
                     ${Math.round(memberPrice)}
                   </div>
