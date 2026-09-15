@@ -596,14 +596,14 @@ export default function Products() {
                       {!!product.memberPrice && product.memberPrice < product.price && (
                         <span
                           className="text-xs mb-0.5"
-                          style={{ color: "#B0A797", fontFamily: "'Playfair Display', serif" }}
+                          style={{ color: "#B0A797" }}
                         >
                           原價 NT$ {product.price}
                         </span>
                       )}
                       <span
                         className="text-lg md:text-xl font-bold"
-                        style={{ color: "#8B6F47", fontFamily: "'Playfair Display', serif" }}
+                        style={{ color: "#8B6F47" }}
                       >
                         NT$ {product.memberPrice || product.price}
                       </span>
