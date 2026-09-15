@@ -285,7 +285,7 @@ export const PRODUCTS: Product[] = [
     series: '熨斗系列(小)',
     price: 3100,
     memberPrice: 2780,
-    description: '淡化(撒平)筲紋、細紋、紋路，使肉沂緊致、水嫩',
+    description: '淡化（撫平）皺紋、細紋、紋路，肌膚緊緻、水嫩',
     image: '/01.jpg',
     benefits: ['青春光采', '逆齢', '精華'],
     size: '小',
