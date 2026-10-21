@@ -10,10 +10,10 @@ export default function Home() {
     {
       id: 'promotion',
       icon: <Gift className="w-7 h-7" />,
-      image: '/promo-banner-newcustomer.jpg',
+      image: '/promo-banner-anniversary27.jpg',
       subtitle: 'LATEST PROMOTION',
       title: '最新活動',
-      description: '新會員消費滿額贈 UIS訂製化妝包｜還有更多好禮進行中',
+      description: '27th 週年慶 會員回饋｜滿額贈精品登機箱、輕奢美妝包，還有更多好禮進行中',
       buttonText: '了解詳情',
       path: '/promotion',
       highlight: true,
