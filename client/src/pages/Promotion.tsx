@@ -10,6 +10,10 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 // detailSrc：點擊 Banner 後彈出的完整活動明細圖（贈品門檻、條件等），沒有的話點擊不會有反應。
 const HERO_POSTERS: { src: string; alt: string; detailSrc?: string; detailAlt?: string }[] = [
   {
+    src: "/promo-banner-anniversary27.jpg",
+    alt: "27th 週年慶 會員回饋：滿額贈精品登機箱、輕奢緞光美妝包（2026/10/19–2026/11/18）",
+  },
+  {
     src: "/promo-banner-newcustomer.jpg",
     alt: "August 新會員消費滿額贈 UIS訂製化妝包",
     detailSrc: "/promo-poster-newcustomer.png",
