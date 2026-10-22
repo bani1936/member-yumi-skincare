@@ -12,10 +12,12 @@ const HERO_POSTERS: { src: string; alt: string; detailSrc?: string; detailAlt?: 
   {
     src: "/promo-banner-anniversary27.jpg",
     alt: "27th 週年慶 會員回饋：滿額贈精品登機箱、輕奢緞光美妝包（2026/10/19–2026/11/18）",
+    detailSrc: "/promo-detail-anniversary27.png",
+    detailAlt: "27th 週年慶 會員回饋 完整活動明細（各級 PV 門檻與贈品）",
   },
   {
     src: "/promo-banner-newcustomer.jpg",
-    alt: "August 新會員消費滿額贈 UIS訂製化妝包",
+    alt: "October 新會員消費滿額贈 UIS訂製化妝包",
     detailSrc: "/promo-poster-newcustomer.png",
     detailAlt: "新會員消費滿額贈完整活動明細",
   },
@@ -51,14 +53,16 @@ export default function Promotion() {
   const [heroIndex, setHeroIndex] = useState(0);
   const [heroDetailOpen, setHeroDetailOpen] = useState(false);
 
-  // 自動輪播：每 2.5 秒切換下一張活動海報，持續循環，不會因為使用者操作而停下來
+  // 自動輪播：每 2.5 秒切換下一張活動海報，持續循環。
+  // 但客人點開「完整活動明細」時要暫停輪播，否則明細會被切換掉、沒辦法看；關閉明細後再繼續輪播。
   useEffect(() => {
     if (HERO_POSTERS.length <= 1) return;
+    if (heroDetailOpen) return;
     const timer = setInterval(() => {
       setHeroIndex((prev) => (prev + 1) % HERO_POSTERS.length);
     }, 2500);
     return () => clearInterval(timer);
-  }, []);
+  }, [heroDetailOpen]);
   const touchStartX = useRef<number | null>(null);
 
   const [previewIndex, setPreviewIndex] = useState<number | null>(null);
@@ -167,12 +171,15 @@ export default function Promotion() {
         >
           {HERO_POSTERS[heroIndex].detailSrc && (
             <div className="relative w-full flex items-center justify-center">
-              <ImageWithFallback
-                src={HERO_POSTERS[heroIndex].detailSrc}
-                fallbackSrc="/favicon.png"
-                alt={HERO_POSTERS[heroIndex].detailAlt || HERO_POSTERS[heroIndex].alt}
-                className="max-h-[85vh] w-auto object-contain"
-              />
+              {/* 明細圖通常是直式長圖：以滿寬顯示、可上下捲動，避免被縮成一小張看不清楚 */}
+              <div className="w-full max-h-[88vh] overflow-y-auto rounded-lg">
+                <ImageWithFallback
+                  src={HERO_POSTERS[heroIndex].detailSrc}
+                  fallbackSrc="/favicon.png"
+                  alt={HERO_POSTERS[heroIndex].detailAlt || HERO_POSTERS[heroIndex].alt}
+                  className="w-full h-auto block"
+                />
+              </div>
               <button
                 type="button"
                 onClick={() => setHeroDetailOpen(false)}
