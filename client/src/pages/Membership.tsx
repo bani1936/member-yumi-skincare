@@ -74,7 +74,8 @@ export default function Membership() {
   const [expandedIds, setExpandedIds] = React.useState<Set<string>>(new Set());
 
   const consumerTiers = [...MEMBERSHIP_TIERS.filter((t) => t.order <= 3), CONSUMER_SMALL_PLATE_TIER];
-  const partnerTiers = MEMBERSHIP_TIERS.filter((t) => t.order >= 4);
+  // 合夥與代理制度分頁：科長（LV.3）排第一張，後面接小盤督導（LV.4）以上
+  const partnerTiers = MEMBERSHIP_TIERS.filter((t) => t.order >= 3);
   const visibleTiers = activeTab === 'consumer' ? consumerTiers : partnerTiers;
 
   const toggleExpand = (id: string) => {
@@ -156,7 +157,7 @@ export default function Membership() {
 
           <div
             className={`grid grid-cols-1 gap-4 ${
-              activeTab === 'consumer' ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3 lg:grid-cols-5'
+              activeTab === 'consumer' ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3 lg:grid-cols-3'
             }`}
           >
             {visibleTiers.map((tier) => {
